@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Event Brite</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+    <style>
+        .panel-body a {
+            word-break: break-all;
+        }
+
+        .articleHeadline {
+            line-height: 1.5;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+
+        .links {
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <form class="form-inline">
+
+        <!-- Button trigger modal -->
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+        <button class="button" type="submit" id="submit-button">Search for Comic Con Events</button>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Upcoming Events</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div cladd="row">
+        <div class="col-sm-12">
+            <hr>
+            <h5 class="text-center">
+                <small> copyrite
+                    <i class="fa fa-heart"></i>
+                </small>
+            </h5>
+
+        </div>
+    </div>
+
+    </div>
+    <script type="text/javascript">
+        function comicEvents(comicEvent) {
+            // Querying the EventBite api to allow a user to search for comic magazine events
+            var queryURL = "https://www.eventbriteapi.com/v3/events/search/?q=" + comicEvent + "&token=RYLM43ARMF7VKZ57B3RJ";
+            jQuery.ajaxPrefilter(function (options) {
+                if (options.crossDomain && jQuery.support.cors) {
+                    options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+                }
+            });
+            $.ajax({
+                url: queryURL,
+                method: "GET"
+            }).then(function (response) {
+                $(".modal-body").empty();
+                //OATH TOken RYLM43ARMF7VKZ57B3RJ
+                // Printing the entire object to console
+                console.log(response);
+                var events = response.events;
+                for (var i = 0; i < 10; i++) {
+                    var { name, url, logo, description, start, end, status } = response.events[i];
+                    // Creating a div to hold the data
+                    var containerDiv = $("<div class='containerDiv'>");
+                    // Constructing HTML containing the event information
+                    var eventName = $("<h1>").text(name ? name.text : "");
+                    var eventURL = $("<a>").attr("href", url ? url : "").text(name ? name.text : "").attr("class", "links");
+                    var eventImage = $("<img>").attr({ src: logo ? logo.original.url : "", style: "float-left", clear: "left", width: "175px", height: "175px" });
+                    var eventDesc = $("<h7>").text(description ? description.text : "");
+                    var eventStart = $("<h6>").text('Start Date:' + ' ' + (moment(start.local).format("LLL")), start.timezone);
+                    var eventEnd = $("<h6>").text("End Date:" + ' ' + (moment(end.local).format("LLL")), end.timezone);
+                    var eventStatus = $("<h6>").text("Event Type:" + ' ' + (status ? status : ""));
+                    //var eventLocale = $("<h6>").text(locale ? locale : "");
+                    //align image to center
+                    $("img").attr("align", "center");
+                    $("h7").attr("align", "left");
+                    $("h6").attr("align", "left");
+                    $("h1").attr("align", "center");
+                    //append varibles to modal    
+                    $(".modal-body").append(eventURL, eventImage, eventDesc, eventStart, eventEnd, eventStatus);
+                }
+            })
+                .then(function (response) {
+                    $('#myModal').modal('show');
+                });
+        }
+        // Event handler for user clicking the submit button
+        $("#submit-button").on("click", function (event) {
+            //$('#myModal').modal('show');
+            // Preventing the button from trying to submit the form
+            event.preventDefault();
+            // Storing the user entry
+            var inputEvent = $("#search-input").val().trim();
+            // Running the searchcomicEvents function (passing in the artist as an argument)
+            comicEvents(inputEvent);
+        });
+    </script>
+</body>
+
+</html>
