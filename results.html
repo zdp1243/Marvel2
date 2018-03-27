@@ -57,6 +57,16 @@
             border: 1px solid #021a40;
             background-color: rgb(255, 102, 0);
         }
+
+        .navbar-text{
+            color: white;
+            font-size: 120%;
+        }
+
+        .nav-link {
+            color: white;
+            font-size: 120%;
+        }
     </style>
 
 
@@ -79,7 +89,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <ul class="navbar-nav mr-auto mt-5 mt-lg-0">
                         <li class="nav-item active">
                             <a class="nav-link" href="index.html">Home
                                 <span class="sr-only">(current)</span>
@@ -87,10 +97,16 @@
                         </li>
                     </ul>
 
-                    <!-- Button trigger modal -->
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
-                    <button class="button" type="submit" id="submit-button">Search for Comic Con Events</button>
                 </div>
+                <!-- Button trigger modal -->
+                <form class="form-inline my-2 my-lg-2">
+                    <span class="navbar-text mr-sm-2" >
+                        Search Comic Con Events          
+                    </span>
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                    <button type="button" class="btn btn-danger" id="submit-button">Search</button>
+                </form>
+
             </nav>
         </div>
 
@@ -378,6 +394,7 @@
         </div>
     </div>
     </div>
+
     </div>
     </div>
 
