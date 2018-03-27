@@ -62,13 +62,35 @@
 
 <body>
 
-    <!--Results Page-->
- <form class="form-inline">
+    <!--Navbar for Modal to Go Here-->
+    <!--
+************************************************    
+**********  START OF EVENTBRITE  **************
+************************************************
+-->
+    <form class="form-inline">
 
-        <!-- Button trigger modal -->
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
-        <button class="button" type="submit" id="submit-button">Search for Comic Con Events</button>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-trans navbar-inverse">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html">Home
+                                <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                    </ul>
 
+                    <!-- Button trigger modal -->
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                    <button class="button" type="submit" id="submit-button">Search for Comic Con Events</button>
+                </div>
+            </nav>
+        </div>
 
         <!-- Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -81,7 +103,6 @@
                         </button>
                     </div>
                     <div class="modal-body">
-
                         ...
                     </div>
                     <div class="modal-footer">
@@ -90,22 +111,24 @@
                 </div>
             </div>
         </div>
-
+       </div>
     </form>
-
-    <div cladd="row">
-        <div class="col-sm-12">
-            <hr>
-            <h5 class="text-center">
-                <small> copyrite
-                    <i class="fa fa-heart"></i>
-                </small>
-            </h5>
-
-        </div>
-    </div>
+    <!--
+<div cladd="row">
+    <div class="col-sm-12">
+        <hr>
+        <h5 class="text-center">
+            <small> copyrite
+                <i class="fa fa-heart"></i>
+            </small>
+        </h5>
 
     </div>
+</div>
+-->
+
+    </div>
+
     <script type="text/javascript">
         function comicEvents(comicEvent) {
             // Querying the EventBite api to allow a user to search for comic magazine events
@@ -161,6 +184,14 @@
             comicEvents(inputEvent);
         });
     </script>
+
+    <!--
+************************************************    
+**********  END OF EVENTBRITE  ****************
+*************************************************
+-->
+
+    <!--Results Page-->
 
     <div class="container">
 
