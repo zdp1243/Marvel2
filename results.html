@@ -243,15 +243,15 @@
                         <li class="list-inline-item">
                             <div class="form-row">
                                 <div class="col-md-12 mb-3">
-                                    <input type="text" class="form-control" placeholder="Search">
+                                    <input id="search-text" type="text" class="form-control" placeholder="Search">
                                 </div>
                             </div>
                         </li>
                         <br>
 
                         <li class="list-inline-item">
-                            <label class="mr-sm-2 text-primary" for="inlineFormCustomSelect">Search By:</label>
-                            <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                            <label class="mr-sm-2 text-primary" for="search-by">Search By:</label>
+                            <select class="custom-select mr-sm-2" id="search-by">
                                 <option selected>Choose...</option>
                                 <option value="1">Character</option>
                                 <option value="2">Issue</option>
@@ -263,7 +263,7 @@
                         <li class="list-inline-item">
                             <div class="form-row align-items-center">
                                 <div class="col-auto my-3">
-                                    <button type="submit" class="btn btn-danger">Search</button>
+                                    <button id="search-button" type="submit" class="btn btn-danger">Search</button>
                                 </div>
                             </div>
                         </li>
@@ -271,18 +271,18 @@
                         <li class="list-inline-item">
 
                             <div class="form-check form-check-inline text-primary">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-                                <label class="form-check-label" for="inlineRadio1">Top 5 Results</label>
+                                <input class="form-check-input" type="radio" name="results" id="results-5" value="5">
+                                <label class="form-check-label" for="results-5">Top 5 Results</label>
                             </div>
 
                             <div class="form-check form-check-inline text-primary">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Top 10 Results</label>
+                                <input class="form-check-input" type="radio" name="results" id="results-10" value="10">
+                                <label class="form-check-label" for="results-10">Top 10 Results</label>
                             </div>
 
                             <div class="form-check form-check-inline text-primary">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-                                <label class="form-check-label" for="inlineRadio2">Top 20 Results</label>
+                                <input checked class="form-check-input" type="radio" name="results" id="results-20" value="20">
+                                <label class="form-check-label" for="results-20">Top 20 Results</label>
                             </div>
                         </li>
                 </div>
@@ -320,7 +320,7 @@
                                     <span id="Want"></span>Want Issue</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="comic-table">
                             <tr>
                                 <td>
                                     <span id="Data-Name"></span>
@@ -365,7 +365,7 @@
                             <tr>
                                 <td>
                                     <span id="Data-synopsis">
-                                        <p>
+                                        <p id="synopsis-text">
                                             Here is where the synopsis will go. Here is where the synopsis will go. Here is where the synopsis will go. Here is where
                                             the synopsis will go. Here is where the synopsis will go. Here is where the synopsis
                                             will go. Here is where the synopsis will go. Here is where the synopsis will
