@@ -67,6 +67,20 @@
             color: white;
             font-size: 120%;
         }
+            .image {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 40%;
+        }
+
+        .links {
+
+            font-size: 25px;
+            text-align: center;
+        }
+        
+        
     </style>
 
 
@@ -160,14 +174,14 @@
                     // Constructing HTML containing the event information
                     var eventName = $("<h1>").text(name ? name.text : "");
                     var eventURL = $("<a>").attr("href", url ? url : "").text(name ? name.text : "").attr("class", "links");
-                    var eventImage = $("<img>").attr({ src: logo ? logo.original.url : "", style: "float-left", clear: "left", width: "175px", height: "175px" });
+                    var eventImage = $("<img>").attr({ src: logo ? logo.original.url : "", style: "float-left", clear: "left", width: "175px", height: "175px" }).attr("class", "image");
                     var eventDesc = $("<h7>").text(description ? description.text : "");
                     var eventStart = $("<h6>").text('Start Date:' + ' ' + (moment(start.local).format("LLL")), start.timezone);
                     var eventEnd = $("<h6>").text("End Date:" + ' ' + (moment(end.local).format("LLL")), end.timezone);
                     var eventStatus = $("<h6>").text("Event Type:" + ' ' + (status ? status : ""));
                     //var eventLocale = $("<h6>").text(locale ? locale : "");
                     //align image to center
-                    $("img").attr("align", "center");
+                    $("image").attr("align", "center");
                     $("h7").attr("align", "left");
                     $("h6").attr("align", "left");
                     $("h1").attr("align", "center");
